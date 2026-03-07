@@ -803,14 +803,109 @@
     cursor: pointer;
   }
 
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .hero, .about-grid, .exp-layout, .contact-inner { grid-template-columns: 1fr; }
-    .hero-right, .about-left, .exp-right { display: none; }
-    .section-wrap { padding: 80px 24px; }
-    .hero { padding: 120px 24px 60px; }
-    footer { flex-direction: column; gap: 12px; text-align: center; }
+  /* ══════════════════════════════
+     RESPONSIVE / MOBILE
+  ══════════════════════════════ */
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    nav { padding: 16px 32px; }
+    .section-wrap { padding: 80px 32px; }
+    .hero { padding: 130px 32px 60px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .exp-layout { grid-template-columns: 1fr; }
+    .exp-right { position: static; }
+    .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* Mobile */
+  @media (max-width: 680px) {
+    nav { padding: 14px 20px; }
+    .nav-logo { font-size: 14px; }
+    .nav-links { gap: 18px; }
+    .nav-links a { font-size: 9px; letter-spacing: 2px; }
+
+    .hero {
+      padding: 110px 20px 60px;
+      min-height: auto;
+    }
+    h1 { font-size: clamp(42px, 11vw, 72px); letter-spacing: -1px; }
+    .hero-desc { font-size: 12px; }
+    .hero-badges { gap: 8px; }
+    .hero-cta { flex-direction: column; gap: 12px; }
+    .hero-cta .btn { text-align: center; width: fit-content; }
+
+    .section-wrap { padding: 60px 20px; }
+    .section-title { font-size: clamp(34px, 9vw, 56px); margin-bottom: 36px; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .about-left { display: none; }
+    .about-bio { font-size: 17px; }
+    .about-details { grid-template-columns: 1fr 1fr; }
+    .detail-cell { padding: 14px 16px; }
+
+    .exp-layout { grid-template-columns: 1fr; }
+    .exp-right { display: none; }
+    .exp-role { font-size: 17px; }
+    .exp-desc { font-size: 10px; }
+
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .contact-funny-panel { padding: 20px; }
+    .contact-title { font-size: clamp(40px, 10vw, 64px); }
+    .contact-link { padding: 12px 14px; }
+
+    /* Inline sections with manual grids */
+    div[style*="grid-template-columns:1fr 1fr"],
+    div[style*="grid-template-columns: 1fr 1fr"],
+    div[style*="grid-template-columns:1.1fr 0.9fr"],
+    div[style*="grid-template-columns: 1.1fr 0.9fr"],
+    div[style*="grid-template-columns:1fr 1.2fr"],
+    div[style*="grid-template-columns: 1fr 1.2fr"] {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+
+    /* Shopsy section iPhone - hide on very small screens */
+    div[style*="width:280px"] {
+      width: 240px !important;
+    }
+
+    /* Doodle strip - stack on mobile */
+    div[style*="justify-content:space-between"][style*="overflow:hidden"] {
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center !important;
+      padding: 20px !important;
+    }
+
+    /* Section padding for inline sections */
+    section[style*="padding: 100px 60px"],
+    section[style*="padding:100px 60px"] {
+      padding: 60px 20px !important;
+    }
+
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 20px; }
+
+    .funny-stat-label { min-width: 120px; font-size: 9px; }
+    .funny-stat-val { font-size: 9px; }
+
+    /* accomplishment/doodle cards in exp-right */
+    .writer-survival-box { padding: 16px; }
+    .survival-item { font-size: 9px; }
+
+    .hero::after { left: 60px; }
+
+    /* YouTube watch button full width on mobile */
+    a[href*="youtube"] {
+      width: 100%;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    a[href*="economictimes"] {
+      display: block;
+      text-align: center;
+    }
   }
 </style>
 </head>
@@ -1303,7 +1398,7 @@
         (The QS World University Rankings graphic was the production team's doing. I just read the lines.)
       </p>
 
-      <a href="https://www.youtube.com/watch?v=r2tOQcbF9is" target="_blank" style="display:inline-flex; align-items:center; gap:12px; padding:14px 28px; background:#FF0000; color:white; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; cursor:auto; transition:opacity 0.2s;">
+      <a href="https://www.youtube.com/watch?v=r2tOQcbF9is" target="_blank" style="display:inline-flex; align-items:center; gap:12px; padding:14px 28px; background:#FF0000; color:white; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; cursor:pointer; transition:opacity 0.2s;">
         <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
           <path d="M15.8 1.9C15.6 1.1 15 0.5 14.2 0.3 13 0 8 0 8 0S3 0 1.8 0.3C1 0.5 0.4 1.1 0.2 1.9 0 3.1 0 6 0 6S0 8.9 0.2 10.1C0.4 10.9 1 11.5 1.8 11.7 3 12 8 12 8 12S13 12 14.2 11.7C15 11.5 15.6 10.9 15.8 10.1 16 8.9 16 6 16 6S16 3.1 15.8 1.9Z" fill="white"/>
           <path d="M6.4 8.5L10.5 6 6.4 3.5V8.5Z" fill="#FF0000"/>
@@ -1723,11 +1818,11 @@
           I'm always up for interesting projects — or anything where good words make a difference.
         </p>
         <div class="contact-links">
-          <a href="mailto:narayanverse@gmail.com" class="contact-link">
+          <a href="mailto:sambhunarayan.as@gmail.com" class="contact-link">
             <div class="contact-link-icon">✉</div>
             <div class="contact-link-text">
               <div class="contact-link-label">Email</div>
-              narayanverse@gmail.com
+              sambhunarayan.as@gmail.com
             </div>
           </a>
           <a href="tel:+917994119993" class="contact-link">
@@ -1815,11 +1910,5 @@
 </footer>
 
 
-<script>
-  // Scroll-triggered edu items
-  const eduItems = document.querySelectorAll('.edu-item');
-  const io2 = new IntersectionObserver(entries => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  /
